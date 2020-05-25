@@ -43,6 +43,11 @@ namespace AlgPlayGroundApp.DataStructures
 
         public T Peek()
         {
+            if (_count == 0)
+            {
+                throw new InvalidOperationException("Stack is empty");
+            }
+
             T val = _arr[_count - 1];
             return val;
         }
@@ -66,22 +71,14 @@ namespace AlgPlayGroundApp.DataStructures
             return GetEnumerator();
         }
 
-        private void RemoveAt(int index)
+        public override string ToString()
         {
-            if (index < 0 || index >= _count)
-            {
-                throw new IndexOutOfRangeException();
-            }
-            //Shift
-            for (int i = index; i < _count; i++)
-            {
-                _arr[i] = _arr[i + 1];
-            }
-            //decrement count
-            _count--;
+            if (_count == 0)
+                return string.Empty;
 
+            var dataArr = new T[_count];
+            Array.Copy(_arr,dataArr,_count);
+            return string.Join(",", dataArr);
         }
-
-        
     }
 }

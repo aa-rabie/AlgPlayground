@@ -110,12 +110,14 @@ namespace AlgPlayGroundApp
                 {
                     st.Push(i * 10);
                 }
-
+                Console.WriteLine(st);
                 Console.WriteLine($"stack size : {st.Count}");
                 var top = st.Pop();
+                Console.WriteLine(st);
                 Console.WriteLine($"Top: {top}, stack size : {st.Count}");
                 Console.WriteLine($"stack size : {st.Count}");
                 top = st.Peek();
+                Console.WriteLine(st);
                 Console.WriteLine($"Top: {top}, stack size : {st.Count}");
                 Console.WriteLine($"stack size : {st.Count}");
             }
