@@ -9,7 +9,7 @@ namespace AlgPlayGroundApp
     {
         static void Main(string[] args)
         {
-            TestStack();
+            TestPriorityQueue();
         }
 
         private static void TestArray()
@@ -125,6 +125,23 @@ namespace AlgPlayGroundApp
             {
                 Console.WriteLine(ex.Message);
             }
+        }
+
+        static void TestPriorityQueue()
+        {
+            var queue = new PriorityQueue<int>(3);
+            queue.Add(6);
+            queue.Add(7);
+            queue.Add(2);
+            queue.Add(4);
+            Console.WriteLine(queue);
+            queue.Remove();
+            queue.Remove();
+            Console.WriteLine(queue);
+            queue.Remove();
+            queue.Remove();
+            Console.WriteLine(queue.IsEmpty);
+
         }
     }
 }
