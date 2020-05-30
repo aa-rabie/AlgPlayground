@@ -9,7 +9,7 @@ namespace AlgPlayGroundApp
     {
         static void Main(string[] args)
         {
-            TestPriorityQueue();
+            TestCharFinder();
         }
 
         private static void TestArray()
@@ -142,6 +142,13 @@ namespace AlgPlayGroundApp
             queue.Remove();
             Console.WriteLine(queue.IsEmpty);
 
+        }
+
+        static void TestCharFinder()
+        {
+            var finder = new CharFinder();
+            var ch = finder.FindFirstNonRepeating("a green apple");
+            Console.WriteLine($"First non repeating char: {ch}");
         }
     }
 }
