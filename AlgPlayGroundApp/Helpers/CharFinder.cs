@@ -34,5 +34,25 @@ namespace AlgPlayGroundApp.Helpers
 
             return null;
         }
+
+        public char? FindFirstRepeating(string input)
+        {
+            if (string.IsNullOrEmpty(input))
+                return null;
+
+            HashSet<char> charSet = new HashSet<char>();
+            foreach (var ch in input)
+            {
+                if (charSet.Contains(ch))
+                {
+                    return ch;
+                }
+                else
+                {
+                    charSet.Add(ch);
+                }
+            }
+            return null;
+        }
     }
 }

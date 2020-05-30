@@ -149,6 +149,9 @@ namespace AlgPlayGroundApp
             var finder = new CharFinder();
             var ch = finder.FindFirstNonRepeating("a green apple");
             Console.WriteLine($"First non repeating char: {ch}");
+
+            ch = finder.FindFirstRepeating("a green apple");
+            Console.WriteLine($"First repeating char: {ch}");
         }
     }
 }
