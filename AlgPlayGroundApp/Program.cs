@@ -9,7 +9,7 @@ namespace AlgPlayGroundApp
     {
         static void Main(string[] args)
         {
-            TestCharFinder();
+            TestBinaryTree();
         }
 
         private static void TestArray()
@@ -152,6 +152,21 @@ namespace AlgPlayGroundApp
 
             ch = finder.FindFirstRepeating("a green apple");
             Console.WriteLine($"First repeating char: {ch}");
+        }
+
+        static void TestBinaryTree()
+        {
+            var tree = new BinaryTree<int>();
+            tree.Insert(7);
+            tree.Insert(4);
+            tree.Insert(1);
+            tree.Insert(9);
+            tree.Insert(10);
+            tree.Insert(8);
+            tree.Insert(6);
+
+            Console.WriteLine($"{tree.Contains(8)}");
+            Console.WriteLine($"{tree.Contains(-20)}");
         }
     }
 }
