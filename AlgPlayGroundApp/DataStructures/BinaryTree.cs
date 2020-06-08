@@ -25,7 +25,7 @@ namespace AlgPlayGroundApp.DataStructures
             }
         }
 
-        public Node Root { private get; set; }
+        public Node Root { get; private set; }
 
         public void Insert(T val)
         {

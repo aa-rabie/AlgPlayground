@@ -167,6 +167,12 @@ namespace AlgPlayGroundApp
 
             Console.WriteLine($"{tree.Contains(8)}");
             Console.WriteLine($"{tree.Contains(-20)}");
+            BinaryTreeTraversalHelper traversalHelper = new BinaryTreeTraversalHelper();
+
+            Console.WriteLine("Testing Traversing - InOrder Reversed method - using recursion");
+            traversalHelper.TraverseInOrderReversed(tree.Root, Console.WriteLine);
+            Console.WriteLine("Testing Traversing - PostOrder method - using recursion");
+            traversalHelper.TraversePostOrder(tree.Root, Console.WriteLine);
         }
     }
 }
