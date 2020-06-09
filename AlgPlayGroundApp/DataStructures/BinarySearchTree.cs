@@ -92,5 +92,25 @@ namespace AlgPlayGroundApp.DataStructures
             // value not found in Tree
             return false;
         }
+
+        /// <summary>
+        /// equation => 1 + Max(Height(LeftChild), Height(RightChild))
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        private int CalculateHeight(Node root)
+        {
+            //tree is empty
+            if(root == null)
+                return -1;
+
+            //this is a leaf node so its height is zero
+            if (root.LeftChild == null && root.RightChild == null)
+                return 0;
+
+            return 1 + Math.Max(CalculateHeight(root.LeftChild), CalculateHeight(root.RightChild));
+        }
+
+        public int Height() => CalculateHeight(Root);
     }
 }
