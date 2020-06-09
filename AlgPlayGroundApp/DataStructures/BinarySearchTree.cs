@@ -7,7 +7,7 @@ namespace AlgPlayGroundApp.DataStructures
     /// left less than node && node less than Right
     /// </summary>
     /// <typeparam name="T"></typeparam>
-    public class BinaryTree<T> where T : IComparable<T>
+    public class BinarySearchTree<T> where T : IComparable<T>
     {
         public class Node
         {

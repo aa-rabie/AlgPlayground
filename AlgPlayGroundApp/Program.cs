@@ -9,7 +9,7 @@ namespace AlgPlayGroundApp
     {
         static void Main(string[] args)
         {
-            TestBinaryTree();
+            TestBinarySearchTree();
         }
 
         private static void TestArray()
@@ -154,9 +154,9 @@ namespace AlgPlayGroundApp
             Console.WriteLine($"First repeating char: {ch}");
         }
 
-        static void TestBinaryTree()
+        static void TestBinarySearchTree()
         {
-            var tree = new BinaryTree<int>();
+            var tree = new BinarySearchTree<int>();
             tree.Insert(7);
             tree.Insert(4);
             tree.Insert(1);
@@ -167,7 +167,7 @@ namespace AlgPlayGroundApp
 
             Console.WriteLine($"{tree.Contains(8)}");
             Console.WriteLine($"{tree.Contains(-20)}");
-            BinaryTreeTraversalHelper traversalHelper = new BinaryTreeTraversalHelper();
+            BinarySearchTreeTraversalHelper traversalHelper = new BinarySearchTreeTraversalHelper();
 
             Console.WriteLine("Testing Traversing - InOrder Reversed method - using recursion");
             traversalHelper.TraverseInOrderReversed(tree.Root, Console.WriteLine);

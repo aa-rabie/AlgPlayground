@@ -3,9 +3,9 @@ using AlgPlayGroundApp.DataStructures;
 
 namespace AlgPlayGroundApp.Helpers
 {
-    public class BinaryTreeTraversalHelper
+    public class BinarySearchTreeTraversalHelper
     {
-        public void TraversePreOrder<T>(BinaryTree<T>.Node root, Action<T> valWriter) where T : IComparable<T>
+        public void TraversePreOrder<T>(BinarySearchTree<T>.Node root, Action<T> valWriter) where T : IComparable<T>
         {
             if (root == null)
                 return;
@@ -21,7 +21,7 @@ namespace AlgPlayGroundApp.Helpers
         /// <typeparam name="T"></typeparam>
         /// <param name="root"></param>
         /// <param name="valWriter"></param>
-        public void TraverseInOrder<T>(BinaryTree<T>.Node root, Action<T> valWriter) where T : IComparable<T>
+        public void TraverseInOrder<T>(BinarySearchTree<T>.Node root, Action<T> valWriter) where T : IComparable<T>
         {
             if (root == null)
                 return;
@@ -37,7 +37,7 @@ namespace AlgPlayGroundApp.Helpers
         /// <typeparam name="T"></typeparam>
         /// <param name="root"></param>
         /// <param name="valWriter"></param>
-        public void TraverseInOrderReversed<T>(BinaryTree<T>.Node root, Action<T> valWriter) where T : IComparable<T>
+        public void TraverseInOrderReversed<T>(BinarySearchTree<T>.Node root, Action<T> valWriter) where T : IComparable<T>
         {
             if (root == null)
                 return;
@@ -53,7 +53,7 @@ namespace AlgPlayGroundApp.Helpers
         /// <typeparam name="T"></typeparam>
         /// <param name="root"></param>
         /// <param name="valWriter"></param>
-        public void TraversePostOrder<T>(BinaryTree<T>.Node root, Action<T> valWriter) where T : IComparable<T>
+        public void TraversePostOrder<T>(BinarySearchTree<T>.Node root, Action<T> valWriter) where T : IComparable<T>
         {
             if (root == null)
                 return;
