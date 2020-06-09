@@ -164,6 +164,9 @@ namespace AlgPlayGroundApp
             tree.Insert(10);
             tree.Insert(8);
             tree.Insert(6);
+            //tree.Insert(-15);
+            //tree.Insert(-50);
+            //tree.Insert(30);
 
             //Console.WriteLine($"{tree.Contains(8)}");
             //Console.WriteLine($"{tree.Contains(-20)}");
@@ -176,6 +179,9 @@ namespace AlgPlayGroundApp
 
             Console.WriteLine($"Tree Height: {tree.Height()}");
             Console.WriteLine($"Empty Tree Height: {new BinarySearchTree<int>().Height()}");
+
+            Console.WriteLine($"Tree Min Val - Tree processed As Normal Binary Tree: {tree.CalculateMinAsBinaryTree()}");
+            Console.WriteLine($"Tree Min Val - Tree processed As Binary Search Tree: {tree.CalculateMinAsBinarySearchTree()}");
         }
     }
 }

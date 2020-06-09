@@ -105,12 +105,73 @@ namespace AlgPlayGroundApp.DataStructures
                 return -1;
 
             //this is a leaf node so its height is zero
-            if (root.LeftChild == null && root.RightChild == null)
+            if (IsLeaf(root))
                 return 0;
 
             return 1 + Math.Max(CalculateHeight(root.LeftChild), CalculateHeight(root.RightChild));
         }
 
+        private bool IsLeaf(Node root) => root.LeftChild == null && root.RightChild == null;
+
         public int Height() => CalculateHeight(Root);
+
+        public bool IsEmpty => Root == null;
+
+        public T CalculateMinAsBinaryTree()
+        {
+            return CalculateMinAsBinaryTree(Root);
+        }
+
+        /// <summary>
+        /// To Calculate the min value we need to go left most leaf node, it has the min value.
+        /// O(Log N)
+        /// </summary>
+        /// <returns></returns>
+        public T CalculateMinAsBinarySearchTree()
+        {
+            if (IsEmpty)
+                throw new InvalidOperationException("Tree is empty");
+
+            if (IsLeaf(root: Root))
+                return Root.Value;
+
+            var current = Root;
+            var previous = current;
+            while (current != null)
+            {
+                previous = current;
+                current = current.LeftChild;
+            }
+
+            return previous.Value;
+        }
+
+        /// <summary>
+        /// This method can calculate Min Value for Normal BinaryTree not Only BinarySearchTree
+        /// O(N) because it traverse all nodes in Tree
+        /// </summary>
+        /// <param name="root"></param>
+        /// <returns></returns>
+        private T CalculateMinAsBinaryTree(Node root)
+        {
+            if (IsLeaf(root))
+                return root.Value;
+
+            if(root.LeftChild == null || root.RightChild == null)
+                throw new InvalidOperationException("This is not a Binary Tree");
+
+            var leftMin = CalculateMinAsBinaryTree(root.LeftChild);
+            var rightMin = CalculateMinAsBinaryTree(root.RightChild);
+
+            return MinValue(root.Value, MinValue(leftMin, rightMin));
+        }
+
+        private T MinValue(T left, T right)
+        {
+            if (left.CompareTo(right) <= 0)
+                return left;
+
+            return right;
+        }
     }
 }
