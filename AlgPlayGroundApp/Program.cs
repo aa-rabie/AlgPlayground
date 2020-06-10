@@ -4,6 +4,7 @@ using AlgPlayGroundApp.Extensions;
 using AlgPlayGroundApp.Helpers;
 using AlgPlayGroundApp.Sorting;
 using System.Collections.Generic;
+using System.Reflection.Metadata.Ecma335;
 using AlgPlayGroundApp.Searching;
 
 namespace AlgPlayGroundApp
@@ -12,7 +13,7 @@ namespace AlgPlayGroundApp
     {
         static void Main(string[] args)
         {
-            TestBinarySearch();
+            TestBinarySearchTree();
         }
 
         private static void TestArray()
@@ -159,17 +160,32 @@ namespace AlgPlayGroundApp
 
         static void TestBinarySearchTree()
         {
-            var tree = new BinarySearchTree<int>();
+            var tree = new IntBinarySearchTree();
             tree.Insert(7);
             tree.Insert(4);
-            tree.Insert(1);
             tree.Insert(9);
-            tree.Insert(10);
-            tree.Insert(8);
+            tree.Insert(1);
             tree.Insert(6);
-            //tree.Insert(-15);
-            //tree.Insert(-50);
-            //tree.Insert(30);
+            tree.Insert(8);
+            tree.Insert(10);
+
+            GetNodesAtDistance(0);
+            GetNodesAtDistance(-5);
+            GetNodesAtDistance(1);
+            GetNodesAtDistance(2);
+            GetNodesAtDistance(3);
+            GetNodesAtDistance(20);
+
+            void GetNodesAtDistance(int distance)
+            {
+                Console.WriteLine($"============================================");
+                Console.WriteLine($"Getting nodes values at distance {distance}");
+                var values = tree.GetNodesAtDistance(distance);
+                foreach (var item in values)
+                {
+                    Console.WriteLine(item);
+                }
+            }
 
             //Console.WriteLine($"{tree.Contains(8)}");
             //Console.WriteLine($"{tree.Contains(-20)}");
@@ -180,11 +196,11 @@ namespace AlgPlayGroundApp
             //Console.WriteLine("Testing Traversing - PostOrder method - using recursion");
             //traversalHelper.TraversePostOrder(tree.Root, Console.WriteLine);
 
-            Console.WriteLine($"Tree Height: {tree.Height()}");
-            Console.WriteLine($"Empty Tree Height: {new BinarySearchTree<int>().Height()}");
+            //Console.WriteLine($"Tree Height: {tree.Height()}");
+            //Console.WriteLine($"Empty Tree Height: {new BinarySearchTree<int>().Height()}");
 
-            Console.WriteLine($"Tree Min Val - Tree processed As Normal Binary Tree: {tree.CalculateMinAsBinaryTree()}");
-            Console.WriteLine($"Tree Min Val - Tree processed As Binary Search Tree: {tree.CalculateMinAsBinarySearchTree()}");
+            //Console.WriteLine($"Tree Min Val - Tree processed As Normal Binary Tree: {tree.CalculateMinAsBinaryTree()}");
+            //Console.WriteLine($"Tree Min Val - Tree processed As Binary Search Tree: {tree.CalculateMinAsBinarySearchTree()}");
         }
 
         private static void TestQuickSort()

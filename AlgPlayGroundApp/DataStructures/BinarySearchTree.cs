@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 
 namespace AlgPlayGroundApp.DataStructures
 {
@@ -172,6 +173,50 @@ namespace AlgPlayGroundApp.DataStructures
                 return left;
 
             return right;
+        }
+
+        private bool Equals(Node first, Node second)
+        {
+            if (first == null && second == null)
+                return true;
+
+            if (first != null && second != null)
+                return first.Value.CompareTo(second.Value) == 0
+                       && Equals(first.LeftChild, second.LeftChild)
+                       && Equals(first.RightChild, second.RightChild);
+
+            return false;
+        }
+
+        public bool Equals(BinarySearchTree<T> other)
+        {
+            if (other == null)
+                return false;
+
+            return Equals(Root, other.Root);
+        }
+
+        private void GetNodesAtDistance(Node root, int distance, List<T> values)
+        {
+            if(root == null || distance < 0)
+                return;
+
+            if (distance == 0)
+            {
+                //we reached required distance - so we add the value to list
+                values?.Add(root.Value);
+                return;
+            }
+
+            GetNodesAtDistance(root.LeftChild, distance - 1, values);
+            GetNodesAtDistance(root.RightChild, distance - 1, values);
+        }
+
+        public List<T> GetNodesAtDistance(int distance)
+        {
+            List<T> values = new List<T>();
+            GetNodesAtDistance(Root, distance, values);
+            return values;
         }
     }
 }
