@@ -2,6 +2,7 @@
 using System;
 using AlgPlayGroundApp.Extensions;
 using AlgPlayGroundApp.Helpers;
+using AlgPlayGroundApp.Sorting;
 
 namespace AlgPlayGroundApp
 {
@@ -9,7 +10,7 @@ namespace AlgPlayGroundApp
     {
         static void Main(string[] args)
         {
-            TestBinarySearchTree();
+            TestQuickSort();
         }
 
         private static void TestArray()
@@ -182,6 +183,41 @@ namespace AlgPlayGroundApp
 
             Console.WriteLine($"Tree Min Val - Tree processed As Normal Binary Tree: {tree.CalculateMinAsBinaryTree()}");
             Console.WriteLine($"Tree Min Val - Tree processed As Binary Search Tree: {tree.CalculateMinAsBinarySearchTree()}");
+        }
+
+        private static void TestQuickSort()
+        {
+            var sort = new QuickSort<int>();
+            Console.WriteLine("array with many elements");
+            int[] array = new[] {7, 5, -5, 3, 0, 9, 4, 2, 1};
+            Print(array);
+            sort.Sort(array);
+            Console.WriteLine("after quick sort");
+            Print(array);
+
+            Console.WriteLine("array size : 2");
+            array = new[] { 7, 5 };
+            Print(array);
+            sort.Sort(array);
+            Console.WriteLine("after quick sort");
+            Print(array);
+
+            Console.WriteLine("array size : 0");
+            array = new int[0];
+            Print(array);
+            sort.Sort(array);
+            Console.WriteLine("after quick sort");
+            Print(array);
+        }
+
+        private static void Print(int[] array)
+        {
+            int length = array.Length;
+            for (int i = 0; i < length; ++i)
+            {
+                Console.Write(array[i] + " ");
+            }
+            Console.WriteLine();
         }
     }
 }
