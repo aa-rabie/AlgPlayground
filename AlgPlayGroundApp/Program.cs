@@ -3,6 +3,8 @@ using System;
 using AlgPlayGroundApp.Extensions;
 using AlgPlayGroundApp.Helpers;
 using AlgPlayGroundApp.Sorting;
+using System.Collections.Generic;
+using AlgPlayGroundApp.Searching;
 
 namespace AlgPlayGroundApp
 {
@@ -10,7 +12,7 @@ namespace AlgPlayGroundApp
     {
         static void Main(string[] args)
         {
-            TestQuickSort();
+            TestBinarySearch();
         }
 
         private static void TestArray()
@@ -33,7 +35,7 @@ namespace AlgPlayGroundApp
 
         private static void TestLinkedList()
         {
-            var list = new LinkedList<int>();
+            var list = new DataStructures.LinkedList<int>();
             for (int i = 0; i < 10; i++)
             {
                 list.AddLast(i * 10);
@@ -51,7 +53,7 @@ namespace AlgPlayGroundApp
 
             Console.ReadLine();
 
-            void GetKthFromEnd(LinkedList<int> linkedList, int k)
+            void GetKthFromEnd(DataStructures.LinkedList<int> linkedList, int k)
             {
                 var val = linkedList.GetKthFromTheEnd(k);
                 Console.WriteLine($"{k} node from the end value is {val}");
@@ -106,7 +108,7 @@ namespace AlgPlayGroundApp
         {
             try
             {
-                var st = new Stack<int>();
+                var st = new DataStructures.Stack<int>();
                 for (int i = 1; i < 11; i++)
                 {
                     st.Push(i * 10);
@@ -208,6 +210,20 @@ namespace AlgPlayGroundApp
             sort.Sort(array);
             Console.WriteLine("after quick sort");
             Print(array);
+        }
+
+        private static void TestBinarySearch()
+        {
+            var data = new List<int>() {1, 3, 5, 7, 9, 11};
+            Console.WriteLine("Testing Binary Search");
+            Console.Write("Test Data: ");
+            Print(data.ToArray());
+            var search = new BinarySearch();
+
+            Console.WriteLine($"index of {11} is {search.Search(data, 11)}");
+            Console.WriteLine($"index of {1} is {search.Search(data, 1)}");
+            Console.WriteLine($"index of {19} is {search.Search(data, 19)}");
+            Console.WriteLine($"index of {5} is {search.Search(data, 5)}");
         }
 
         private static void Print(int[] array)
