@@ -62,5 +62,21 @@ namespace AlgPlayGroundApp.Helpers
             TraversePostOrder<T>(root.RightChild, valWriter);
             valWriter?.Invoke(root.Value);
         }
+
+        public void TraverseLevelOrder<T>(BinarySearchTree<T> tree, Action<T> valWriter) where T : IComparable<T>
+        {
+            if (tree == null || tree.Root == null)
+                return;
+            var height = tree.Height();
+            for (int i = 0; i <= height; i++)
+            {
+                var list = tree.GetNodesAtDistance(i);
+                foreach (var nodeValue in list)
+                {
+                    valWriter?.Invoke(nodeValue);
+                }
+            }
+        }
+
     }
 }
