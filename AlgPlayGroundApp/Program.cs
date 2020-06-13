@@ -13,7 +13,7 @@ namespace AlgPlayGroundApp
     {
         static void Main(string[] args)
         {
-            TestBinarySearchTree();
+            TestAvlTree();
         }
 
         private static void TestArray()
@@ -250,6 +250,14 @@ namespace AlgPlayGroundApp
                 Console.Write(array[i] + " ");
             }
             Console.WriteLine();
+        }
+
+        static void TestAvlTree()
+        {
+            var tree = new AvlTree();
+            tree.Insert(30);
+            tree.Insert(10);
+            tree.Insert(20);
         }
     }
 }
