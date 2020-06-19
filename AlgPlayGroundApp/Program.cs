@@ -5,6 +5,7 @@ using AlgPlayGroundApp.Helpers;
 using AlgPlayGroundApp.Sorting;
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
+using AlgPlayGroundApp.LeetCode;
 using AlgPlayGroundApp.Searching;
 
 namespace AlgPlayGroundApp
@@ -13,7 +14,8 @@ namespace AlgPlayGroundApp
     {
         static void Main(string[] args)
         {
-            TestAvlTree();
+            //TestAvlTree();
+            new LongestSubStringWithoutRepeatedChars().Test();
         }
 
         private static void TestArray()
