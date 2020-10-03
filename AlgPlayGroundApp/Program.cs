@@ -15,7 +15,7 @@ namespace AlgPlayGroundApp
         static void Main(string[] args)
         {
             //TestAvlTree();
-            new LongestSubStringWithoutRepeatedChars().Test();
+            new FindDuplicatesInArray().ContainsDuplicate(new int[] {1, 2, 3, 1});
         }
 
         private static void TestArray()
