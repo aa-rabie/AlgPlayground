@@ -14,8 +14,8 @@ namespace AlgPlayGroundApp
     {
         static void Main(string[] args)
         {
-            //TestAvlTree();
-            new FindDuplicatesInArray().ContainsDuplicate(new int[] {1, 2, 3, 1});
+            
+            new IntersectionOfTwoArraysII().GetIntersectionsUsingDictionary(new int[] {1, 2, 2, 1} , new int[] { 2, 2});
         }
 
         private static void TestArray()
