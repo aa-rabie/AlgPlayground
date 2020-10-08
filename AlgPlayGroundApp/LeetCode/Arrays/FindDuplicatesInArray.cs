@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AlgPlayGroundApp.LeetCode
+namespace AlgPlayGroundApp.LeetCode.Arrays
 {
     public class FindDuplicatesInArray
     {

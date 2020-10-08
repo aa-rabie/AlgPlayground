@@ -7,6 +7,7 @@ using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
 using AlgPlayGroundApp.GenericQuestions;
 using AlgPlayGroundApp.LeetCode;
+using AlgPlayGroundApp.LeetCode.Arrays;
 using AlgPlayGroundApp.Searching;
 
 namespace AlgPlayGroundApp
@@ -16,8 +17,8 @@ namespace AlgPlayGroundApp
         static void Main(string[] args)
         {
 
-            var processor = new ArrayHasZeroSumSubSequenceOrNot();
-            Console.WriteLine($" [2 8 -9 1] has zero subsequence : {processor.SubArrayExists(new int[]{ 2 ,8,-9 ,1 })}");
+            var processor = new OnePlus();
+            processor.PlusOne(new int[] {9});
         }
 
         private static void TestArray()

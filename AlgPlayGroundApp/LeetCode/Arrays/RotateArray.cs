@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace AlgPlayGroundApp.LeetCode
+﻿namespace AlgPlayGroundApp.LeetCode.Arrays
 {
     public class RotateArray
     {

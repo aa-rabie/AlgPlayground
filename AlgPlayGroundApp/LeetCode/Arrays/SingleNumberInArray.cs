@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 
-namespace AlgPlayGroundApp.LeetCode
+namespace AlgPlayGroundApp.LeetCode.Arrays
 {
     /*
      * problem described at https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/549/ 

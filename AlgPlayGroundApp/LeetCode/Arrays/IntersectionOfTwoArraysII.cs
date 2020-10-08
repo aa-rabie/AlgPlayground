@@ -1,8 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Runtime.InteropServices.WindowsRuntime;
 
-namespace AlgPlayGroundApp.LeetCode
+namespace AlgPlayGroundApp.LeetCode.Arrays
 {
     // problem : https://leetcode.com/explore/interview/card/top-interview-questions-easy/92/array/674/
     public class IntersectionOfTwoArraysII

@@ -1,4 +1,4 @@
-﻿namespace AlgPlayGroundApp.LeetCode
+﻿namespace AlgPlayGroundApp.LeetCode.Arrays
 {
     /// <summary>
     /// problem desc link @ https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
