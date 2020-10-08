@@ -5,6 +5,7 @@ using AlgPlayGroundApp.Helpers;
 using AlgPlayGroundApp.Sorting;
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
+using AlgPlayGroundApp.GenericQuestions;
 using AlgPlayGroundApp.LeetCode;
 using AlgPlayGroundApp.Searching;
 
@@ -14,8 +15,9 @@ namespace AlgPlayGroundApp
     {
         static void Main(string[] args)
         {
-            
-            new IntersectionOfTwoArraysII().GetIntersectionsUsingDictionary(new int[] {1, 2, 2, 1} , new int[] { 2, 2});
+
+            var processor = new ArrayHasZeroSumSubSequenceOrNot();
+            Console.WriteLine($" [2 8 -9 1] has zero subsequence : {processor.SubArrayExists(new int[]{ 2 ,8,-9 ,1 })}");
         }
 
         private static void TestArray()
