@@ -17,8 +17,8 @@ namespace AlgPlayGroundApp
         static void Main(string[] args)
         {
 
-            var processor = new OnePlus();
-            processor.PlusOne(new int[] {9});
+            var processor = new MoveZeroToEndInPlace();
+            processor.MoveZeroes(new int[] {0, 1, 0, 3, 12});
         }
 
         private static void TestArray()
