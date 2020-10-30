@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Text;
+using System.Threading;
 
 namespace AlgPlayGroundApp.DataStructures
 {
@@ -8,6 +10,7 @@ namespace AlgPlayGroundApp.DataStructures
     {
         private T[]_arr;
         private int _count;
+        public int Count => _count;
         public Array(int length)
         {
             if (length < 0)
@@ -40,7 +43,7 @@ namespace AlgPlayGroundApp.DataStructures
                 throw new IndexOutOfRangeException();
             }
             //Shift
-            for (int i = index; i < _count; i++)
+            for (int i = index; i < _count-1; i++)
             {
                 _arr[i] = _arr[i + 1];
             }
@@ -72,6 +75,23 @@ namespace AlgPlayGroundApp.DataStructures
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public override string ToString()
+        {
+            if (_count == 0)
+                return string.Empty;
+
+            var builder = new StringBuilder("[");
+            for (int i = 0; i < _count; i++)
+            {
+                builder.Append(_arr[i]);
+                if (i < _count - 1)
+                    builder.Append(",");
+            }
+
+            builder.Append("]");
+            return builder.ToString();
         }
     }
 }
