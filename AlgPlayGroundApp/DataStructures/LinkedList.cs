@@ -1,9 +1,10 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 
 namespace AlgPlayGroundApp.DataStructures
 {
-    public class LinkedList<T>
+    public class LinkedList<T> : IEnumerable<T>
     {
         public class Node
         {
@@ -217,5 +218,61 @@ namespace AlgPlayGroundApp.DataStructures
             return firstNode.Value;
         }
 
+        public IEnumerator<T> GetEnumerator()
+        {
+            if (!IsEmpty)
+            {
+                var current = First;
+                while (current != null)
+                {
+                    yield return current.Value;
+                    current = current.Next;
+                }
+            }
+        }
+
+        IEnumerator IEnumerable.GetEnumerator()
+        {
+            return this.GetEnumerator();
+        }
+
+        public void Remove(T value)
+        {
+            if (IsEmpty)
+                return;
+
+            var current = First;
+            Node previous = null;
+            while (current != null)
+            {
+                if (EqualityComparer<T>.Default.Equals(current.Value, value))
+                {
+                    if (HasSingleElement || current == First)
+                    {
+                        RemoveFirst();
+                        return;
+                    }
+                    if (current != Last && previous != null)
+                    {
+                        previous.Next = current.Next;
+                        current.Next = null;
+                        Size--;
+                        return;
+                    }
+
+                    if (current == Last && previous != null)
+                    {
+                        Last = previous;
+                        previous.Next = null;
+                        Size--;
+                        return;
+                    }
+                    
+                }
+
+                previous = current;
+                current = current?.Next;
+            }
+        }
     }
 }
