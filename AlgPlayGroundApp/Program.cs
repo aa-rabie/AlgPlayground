@@ -5,6 +5,7 @@ using AlgPlayGroundApp.Helpers;
 using AlgPlayGroundApp.Sorting;
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
+using AlgPlayGroundApp.Amazon.Demo;
 using AlgPlayGroundApp.GenericQuestions;
 using AlgPlayGroundApp.LeetCode;
 using AlgPlayGroundApp.LeetCode.Arrays;
@@ -17,8 +18,7 @@ namespace AlgPlayGroundApp
         static void Main(string[] args)
         {
 
-            var processor = new MoveZeroToEndInPlace();
-            processor.MoveZeroes(new int[] {0, 1, 0, 3, 12});
+            var h = new HousesProblem();
         }
 
         private static void TestArray()
