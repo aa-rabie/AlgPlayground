@@ -152,15 +152,17 @@ namespace AlgPlayGroundApp.DataStructures
                 : GetRightChildIndex(index);
         }
 
-        public void Remove()
+        public T Remove()
         {
             if (IsEmpty)
-                return;
+                throw new InvalidOperationException("Heap is empty") ;
 
-            //remove root item & but leaf node as a root
+            //remove root item & put leaf node as a root
+            var removedValue = _arr[0];
             _arr[0] = _arr[--_size];
             // bubble down new-root as long as it is not valid parent
             BubbleDown();
+            return removedValue;
         }
 
         private void BubbleDown()
