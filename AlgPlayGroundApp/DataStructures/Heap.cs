@@ -197,6 +197,17 @@ namespace AlgPlayGroundApp.DataStructures
         {
             return GetRightChildIndex(index) <= _size;
         }
+
+        public T Max
+        {
+            get
+            {
+                if(IsEmpty)
+                    throw new InvalidOperationException("Heap is empty");
+
+                return _arr[0];
+            }
+        }
     }
 
 }
