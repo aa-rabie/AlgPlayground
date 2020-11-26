@@ -18,7 +18,8 @@ namespace AlgPlayGroundApp
         static void Main(string[] args)
         {
 
-            var h = new HousesProblem();
+            var h = new LongestSubStringWithoutRepeatedChars();
+            h.LengthOfLongestSubstring("abcabcbb");
         }
 
         private static void TestArray()

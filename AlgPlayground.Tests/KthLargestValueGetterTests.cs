@@ -13,6 +13,7 @@ namespace AlgPlayground.Tests
         {
         }
 
+        [Test]
         [TestCase(1, 8)]
         [TestCase(2, 5)]
         [TestCase(6, 1)]
@@ -23,6 +24,7 @@ namespace AlgPlayground.Tests
            Assert.That(result, Is.EqualTo(expectedResult));
         }
 
+        [Test]
         [TestCase(0, typeof(ArgumentOutOfRangeException))]
         [TestCase(7, typeof(ArgumentOutOfRangeException))]
         public void TestKthLargestValueThrowsWithInvalidException(int k, Type expectedExceptionType)
