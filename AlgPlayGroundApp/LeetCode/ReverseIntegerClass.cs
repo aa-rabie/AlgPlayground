@@ -21,7 +21,7 @@ namespace AlgPlayGroundApp.LeetCode
             return rev;
         }
 
-        public static int MySolutio(int x)
+        public static int MySolution(int x)
         {
             if (x == 0)
                 return 0;
@@ -51,7 +51,7 @@ namespace AlgPlayGroundApp.LeetCode
                 var result = int.Parse(reversedNumber);
                 return result;
             }
-            catch (OverflowException exp)
+            catch (OverflowException)
             {
                 return 0;
             }
