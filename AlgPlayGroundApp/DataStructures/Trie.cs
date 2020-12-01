@@ -96,6 +96,7 @@ namespace AlgPlayGroundApp.DataStructures
             return current.IsEndOfWord;
         }
 
+        #region Traverse methods
         public IList<char> PreOrderTraverse()
         {
             var list = PreOrderTraverse(_root);
@@ -138,7 +139,9 @@ namespace AlgPlayGroundApp.DataStructures
             
             return list;
         }
+        #endregion
 
+        #region Remove
         public void Remove(string word)
         {
             if(string.IsNullOrEmpty(word))
@@ -172,5 +175,69 @@ namespace AlgPlayGroundApp.DataStructures
             if(!child.IsEndOfWord && !child.HasChildren)
                 parentNode.RemoveChild(ch);
         }
+        #endregion
+
+        #region FindWords - auto-complete related methods
+
+        /// <summary>
+        /// this function will return list of words that auto-complete specific prefix (if any) in Trie
+        /// for example if Trie contains [car,care,cargo,egg,careful] & prefix is "care"
+        /// then list will contain [care,careful]
+        /// </summary>
+        /// <param name="prefix"></param>
+        /// <returns></returns>
+        public List<string> FindWords(string prefix)
+        {
+            var words = new List<string>();
+            var lastCharNode = FindLastNodeOfWord(prefix);
+            if (lastCharNode == null)
+            {
+                return words;
+            }
+
+            FindWords(lastCharNode, prefix, words);
+
+            return words;
+        }
+
+        private void FindWords(Node root, string prefix, List<string> words)
+        {
+            if(root == null)
+                return;
+            if (root.IsEndOfWord)
+            {
+                //the prefix already is complete word, so we need to add it to words array
+                words.Add(prefix);
+            }
+
+            var children = root.GetChildren();
+            foreach (var child in children)
+            {
+                //for each char in Children
+                // we will concatenate the char to prefix and create "new-prefix"
+                // then we try to search and see if there are any words that auto-complete the new-prefix
+                var newPrefix = $"{prefix}{child.Value}";
+                FindWords(child, newPrefix , words);
+            }
+        }
+
+        private Node FindLastNodeOfWord(string prefix)
+        {
+            if (prefix == null)
+                return null;
+
+            var current = _root;
+            foreach (var ch in prefix)
+            {
+                if (!current.HasChild(ch))
+                    return null;
+
+                current = current.GetChild(ch);
+            }
+            //now current points to last character in Prefix
+            return current;
+        }
+
+        #endregion
     }
 }
