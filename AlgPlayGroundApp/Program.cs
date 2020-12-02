@@ -18,8 +18,15 @@ namespace AlgPlayGroundApp
         static void Main(string[] args)
         {
 
-            var h = new LongestSubStringWithoutRepeatedChars();
-            h.LengthOfLongestSubstring("abcabcbb");
+            var h = new Graph();
+            h.AddNode("A");
+            h.AddNode("B");
+            h.AddNode("C");
+            h.AddEdge("A", "B");
+            h.AddEdge("A", "C");
+            h.AddEdge("A", "C");
+            h.AddEdge("B", "C");
+            h.Print(Console.Out);
         }
 
         private static void TestArray()
