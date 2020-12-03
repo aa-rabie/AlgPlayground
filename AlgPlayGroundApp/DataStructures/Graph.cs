@@ -32,6 +32,8 @@ namespace AlgPlayGroundApp.DataStructures
                 _label = label;
             }
 
+            public string Label => _label;
+
             public override string ToString()
             {
                 return _label;
@@ -74,6 +76,38 @@ namespace AlgPlayGroundApp.DataStructures
              */
         }
 
+        public void RemoveNode(string label)
+        {
+            if (string.IsNullOrEmpty(label))
+                return;
+
+            _nodes.TryGetValue(label, out Node node);
+            if (node == null)
+                return;
+
+            //we need to remove all edges that is linked to this node
+            // we need to iterate on edge-list for all nodes
+            foreach (var key in _adjacencyList.Keys)
+            {
+                _adjacencyList[key].Remove(node);
+            }
+            // remove edges-list for that node
+            _adjacencyList.Remove(node);
+            //remove node from Nodes
+            _nodes.Remove(label);
+        }
+
+        public void RemoveEdge(string from, string to)
+        {
+            _nodes.TryGetValue(from, out Node fromNode);
+            _nodes.TryGetValue(to, out Node toNode);
+
+            if (fromNode == null || toNode == null)
+                return;
+
+            _adjacencyList[fromNode].Remove(toNode);
+        }
+
         public void Print(TextWriter writer)
         {
             foreach (var entry in _nodes)
@@ -85,5 +119,35 @@ namespace AlgPlayGroundApp.DataStructures
                 }
             }
         }
+
+        #region TraverseDepthFirst - recursively
+        // to refresh your mind check video # 70, 71 , 72 in Mosh data-structure course part II
+        // video #70 => Graph Traversal Algorithms
+        // video #71 => Exercise Depth-First traversal - exercise
+        // video #72 => Exercise Depth-First traversal - solution
+        public IList<string> TraverseDepthFirst(string label)
+        {
+            var values = new List<string>();
+
+            if (!_nodes.TryGetValue(label, out Node node))
+                return values;
+
+            TraverseDepthFirst(node, values, new HashSet<Node>());
+            return values;
+        }
+
+        private void TraverseDepthFirst(Node node, List<string> values, HashSet<Node> visitedNodes)
+        {
+            visitedNodes.Add(node);
+            values.Add(node.Label);
+
+            foreach (var neighbor in _adjacencyList[node])
+            {
+                // we traverse a node only if it is not visited before
+                if (!visitedNodes.Contains(neighbor))
+                    TraverseDepthFirst(neighbor, values, visitedNodes);
+            }
+        }
+        #endregion
     }
 }

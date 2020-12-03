@@ -26,7 +26,14 @@ namespace AlgPlayGroundApp
             h.AddEdge("A", "C");
             h.AddEdge("A", "C");
             h.AddEdge("B", "C");
-            h.Print(Console.Out);
+            Console.WriteLine("TraverseDepthFirst - starting from : A");
+            Console.WriteLine(string.Join(',',h.TraverseDepthFirst("A")));
+            Console.WriteLine("TraverseDepthFirst - starting from : C");
+            Console.WriteLine(string.Join(',',h.TraverseDepthFirst("C")));
+            Console.WriteLine("TraverseDepthFirst - starting from : B");
+            Console.WriteLine(string.Join(',',h.TraverseDepthFirst("B")));
+            Console.WriteLine("TraverseDepthFirst - starting from : G - it does not exist");
+            Console.WriteLine(string.Join(',', h.TraverseDepthFirst("G")));
         }
 
         private static void TestArray()
