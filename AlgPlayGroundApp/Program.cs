@@ -27,13 +27,22 @@ namespace AlgPlayGroundApp
             h.AddEdge("A", "C");
             h.AddEdge("B", "C");
             Console.WriteLine("TraverseDepthFirst - starting from : A");
-            Console.WriteLine(string.Join(',',h.TraverseDepthFirst("A")));
+            Console.WriteLine(string.Join(',',h.TraverseDepthFirstRecursively("A")));
             Console.WriteLine("TraverseDepthFirst - starting from : C");
-            Console.WriteLine(string.Join(',',h.TraverseDepthFirst("C")));
+            Console.WriteLine(string.Join(',',h.TraverseDepthFirstRecursively("C")));
             Console.WriteLine("TraverseDepthFirst - starting from : B");
-            Console.WriteLine(string.Join(',',h.TraverseDepthFirst("B")));
+            Console.WriteLine(string.Join(',',h.TraverseDepthFirstRecursively("B")));
             Console.WriteLine("TraverseDepthFirst - starting from : G - it does not exist");
-            Console.WriteLine(string.Join(',', h.TraverseDepthFirst("G")));
+            Console.WriteLine(string.Join(',', h.TraverseDepthFirstRecursively("G")));
+            Console.WriteLine("TraverseDepthFirst - Iteratively");
+            Console.WriteLine("TraverseDepthFirst - starting from : A");
+            Console.WriteLine(string.Join(',', h.TraverseDepthFirstIteratively("A")));
+            Console.WriteLine("TraverseDepthFirst - starting from : C");
+            Console.WriteLine(string.Join(',', h.TraverseDepthFirstIteratively("C")));
+            Console.WriteLine("TraverseDepthFirst - starting from : B");
+            Console.WriteLine(string.Join(',', h.TraverseDepthFirstIteratively("B")));
+            Console.WriteLine("TraverseDepthFirst - starting from : G - it does not exist");
+            Console.WriteLine(string.Join(',', h.TraverseDepthFirstIteratively("G")));
         }
 
         private static void TestArray()

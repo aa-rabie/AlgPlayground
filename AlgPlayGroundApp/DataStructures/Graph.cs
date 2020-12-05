@@ -125,18 +125,18 @@ namespace AlgPlayGroundApp.DataStructures
         // video #70 => Graph Traversal Algorithms
         // video #71 => Exercise Depth-First traversal - exercise
         // video #72 => Exercise Depth-First traversal - solution
-        public IList<string> TraverseDepthFirst(string label)
+        public IList<string> TraverseDepthFirstRecursively(string label)
         {
             var values = new List<string>();
 
             if (!_nodes.TryGetValue(label, out Node node))
                 return values;
 
-            TraverseDepthFirst(node, values, new HashSet<Node>());
+            TraverseDepthFirstRecursively(node, values, new HashSet<Node>());
             return values;
         }
 
-        private void TraverseDepthFirst(Node node, List<string> values, HashSet<Node> visitedNodes)
+        private void TraverseDepthFirstRecursively(Node node, List<string> values, HashSet<Node> visitedNodes)
         {
             visitedNodes.Add(node);
             values.Add(node.Label);
@@ -145,9 +145,74 @@ namespace AlgPlayGroundApp.DataStructures
             {
                 // we traverse a node only if it is not visited before
                 if (!visitedNodes.Contains(neighbor))
-                    TraverseDepthFirst(neighbor, values, visitedNodes);
+                    TraverseDepthFirstRecursively(neighbor, values, visitedNodes);
             }
         }
         #endregion
+
+        public IList<string> TraverseDepthFirstIteratively(string label)
+        {
+            var values = new List<string>();
+
+            if (!_nodes.TryGetValue(label, out Node node))
+                return values;
+
+            var visitedNodes = new HashSet<Node>();
+            var stack = new System.Collections.Generic.Stack<Node>();
+            stack.Push(node);
+            while (stack.Count > 0)
+            {
+                var current = stack.Pop();
+                if(visitedNodes.Contains(current))
+                    continue;
+
+                values.Add(current.Label);
+                visitedNodes.Add(current);
+                
+                foreach (var neighbor in _adjacencyList[current])
+                {
+                    // we traverse a node only if it is not visited before
+                    if (!visitedNodes.Contains(neighbor))
+                        stack.Push(neighbor);
+                }
+            }
+
+            return values;
+        }
+
+        /// <summary>
+        /// // to refresh your mind check video # 75, 76 in Mosh data-structure course part II
+        /// </summary>
+        /// <param name="label"></param>
+        /// <returns></returns>
+        public IList<string> TraverseBreadthFirst(string label)
+        {
+            var values = new List<string>();
+
+            if (!_nodes.TryGetValue(label, out Node node))
+                return values;
+
+            var visitedNodes = new HashSet<Node>();
+            var queue = new System.Collections.Generic.Queue<Node>();
+            queue.Enqueue(node);
+            while (queue.Count > 0)
+            {
+                var current = queue.Dequeue();
+                if (visitedNodes.Contains(current))
+                    continue;
+
+                values.Add(current.Label);
+                visitedNodes.Add(current);
+
+                foreach (var neighbor in _adjacencyList[current])
+                {
+                    // we traverse a node only if it is not visited before
+                    if (!visitedNodes.Contains(neighbor))
+                        queue.Enqueue(neighbor);
+                }
+            }
+
+            return values;
+        }
     }
 }
