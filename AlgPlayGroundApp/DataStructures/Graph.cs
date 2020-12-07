@@ -214,5 +214,97 @@ namespace AlgPlayGroundApp.DataStructures
 
             return values;
         }
+
+        #region Topological Order - works only with Directed Acyclic graphs
+        // to refresh your mind check video # 75, 76 in Mosh data-structure course part II
+
+        public List<string> TopologicalOrder()
+        {
+            var stack = new System.Collections.Generic.Stack<Node>();
+            var visitedNodes = new HashSet<Node>();
+            foreach (var node in _nodes.Values)
+            {
+                TopologicalOrder(node, stack, visitedNodes);
+            }
+            // here - the nodes are sorted in reversed order in stack
+            // we need to pop them one by one and add them to list
+            var sorted = new List<string>();
+            while (stack.Count > 0)
+            {
+                sorted.Add(stack.Pop().Label);
+            }
+
+            return sorted;
+        }
+
+        private void TopologicalOrder(Node node, System.Collections.Generic.Stack<Node> stack, HashSet<Node> visitedNodes)
+        {
+            // if we visited this node before during traversal then exit
+            if(visitedNodes.Contains(node))
+                return;
+
+            // add node to visited-nodes set
+            visitedNodes.Add(node);
+            //traverse each neighbor recursively
+            foreach (var neighborNode in _adjacencyList[node])
+            {
+                TopologicalOrder(neighborNode, stack, visitedNodes);
+            }
+            // after traversing all neighbors, add node to stack 
+            stack.Push(node);
+        }
+
+        #endregion
+
+        #region HasCycle - video #80 in Mosh course Part II
+
+        public bool HasCycle()
+        {
+            var all = new HashSet<Node>(_nodes.Values); // initially contains all nodes in graph
+            var visiting = new HashSet<Node>(); // // contains nodes that we did NOT visiting them & all their neighbors yet
+            var visited = new HashSet<Node>(); // contains nodes after we visiting them & all their neighbors
+
+            while (all.Count > 0)
+            {
+                using (var enumerator = all.GetEnumerator())
+                {
+                    enumerator.MoveNext();
+                    var current = enumerator.Current;
+                    if (HasCycle(current, all, visiting, visited))
+                        return true;
+                }
+
+            }
+
+            return false;
+        }
+
+        private bool HasCycle(Node current, HashSet<Node> all, HashSet<Node> visiting, HashSet<Node> visited)
+        {
+            all.Remove(current);
+            visiting.Add(current);
+
+            foreach (var neighbor in _adjacencyList[current])
+            {
+                //bypass neighbor if we visited it before
+                if(visited.Contains(neighbor))
+                    continue;
+                // if we still visiting the neighbor then we have a cycle
+                if (visiting.Contains(neighbor))
+                    return true;
+                //return true if neighbor has a Cycle
+                if (HasCycle(neighbor, all, visiting, visited))
+                    return true;
+            }
+            // here current node does not have a cycle so
+            // 1) remove it from visiting collection
+            // 2) add it to visited collection
+            // 3) return false;
+            visiting.Remove(current);
+            visited.Add(current);
+            return false;
+        }
+
+        #endregion
     }
 }
