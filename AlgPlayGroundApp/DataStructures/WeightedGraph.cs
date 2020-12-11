@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
+using Priority_Queue;
+using Path = AlgPlayGroundApp.Core.Path;
 
 namespace AlgPlayGroundApp.DataStructures
 {
@@ -89,6 +91,10 @@ namespace AlgPlayGroundApp.DataStructures
 
                 return true;
             }
+
+            public Node From => _from;
+            public Node To => _to;
+            public int Weight => _weight;
         }
 
         private Dictionary<string, Node> _nodes = new Dictionary<string, Node>();
@@ -133,6 +139,152 @@ namespace AlgPlayGroundApp.DataStructures
                     writer.WriteLine($"{entry} is connected to [{string.Join(',', edges)}]");
                 }
             }
+        }
+
+        // for more info - for more info see video 86, 87, 88 in Mosh data-structure course part II
+        public int GetShortedDistance(string from, string to)
+        {
+            if (!_nodes.ContainsKey(from))
+                throw new ArgumentException(nameof(from));
+
+            if (!_nodes.ContainsKey(to))
+                throw new ArgumentException(nameof(to));
+
+            var fromNode = _nodes[from];
+            var toNode = _nodes[to];
+
+            SimplePriorityQueue<Node> queue = new SimplePriorityQueue<Node>();
+            //distances map will store distance between fromNode & all other nodes in graph
+            Dictionary<Node,int> distances = new Dictionary<Node, int>(_nodes.Count);
+            // visited HashSet will track nodes "we" visited during our traversal -
+            // because we don't need to visit same node twice'
+            HashSet<Node> visited = new HashSet<Node>();
+            foreach (var node in _nodes.Values)
+            {
+                distances.Add(node,int.MaxValue);
+            }
+
+            distances[fromNode] = 0;
+            //initially we enqueue "fromNode"
+            queue.Enqueue(fromNode, 0);
+
+            while (queue.Count > 0)
+            {
+                // as long as queue is not empty
+                // we dequeue nodes
+                // the dequeued node should be added to "visited" Hash-Set
+                var current = queue.Dequeue();
+                visited.Add(current);
+                // for each node we iterate its neighbors (via edges)
+                foreach (var edge in current.Edges)
+                {
+                    if(visited.Contains(edge.To))
+                        continue;
+                    // we calculate the distance to neighbor-node <=> which is stored in edge.To property
+                    var newDistance = distances[current] + edge.Weight; // weight property store distance between current node and neighbor-node
+                    if (newDistance < distances[edge.To])
+                    {
+                        //if new distance to neighbor node less than data in "distances" dictionary then
+                        // 1) we update "distances" dictionary
+                        distances[edge.To] = newDistance;
+                        // 2) add this neighbor to priority queue
+                        queue.Enqueue(edge.To, newDistance);
+                    }
+                }
+
+            }
+            // here we built distances table
+            // now we can get shortest distance to specific "to" node
+            return distances[toNode];
+        }
+
+        // Dijkstra's shortest path - video # 89 in Mosh Data Structure algorithm part II
+        public Path GetShortedPath(string from, string to)
+        {
+            if (!_nodes.ContainsKey(from))
+                throw new ArgumentException(nameof(from));
+
+            if (!_nodes.ContainsKey(to))
+                throw new ArgumentException(nameof(to));
+
+            var fromNode = _nodes[from];
+            var toNode = _nodes[to];
+
+            SimplePriorityQueue<Node> queue = new SimplePriorityQueue<Node>();
+            //distances map will store distance between fromNode & all other nodes in graph
+            Dictionary<Node, int> distances = new Dictionary<Node, int>(_nodes.Count);
+            // visited HashSet will track nodes "we" visited during our traversal -
+            // because we don't need to visit same node twice'
+            HashSet<Node> visited = new HashSet<Node>();
+            // "previousNodes" will be used to build the path between "from" to "to" Nodes
+            Dictionary<Node, Node> previousNodes = new Dictionary<Node, Node>();
+
+            foreach (var node in _nodes.Values)
+            {
+                distances.Add(node, int.MaxValue);
+            }
+
+            distances[fromNode] = 0;
+            //initially we enqueue "fromNode"
+            queue.Enqueue(fromNode, 0);
+
+            while (queue.Count > 0)
+            {
+                // as long as queue is not empty
+                // we dequeue nodes
+                // the dequeued node should be added to "visited" Hash-Set
+                var current = queue.Dequeue();
+                visited.Add(current);
+                // for each node we iterate its neighbors (via edges)
+                foreach (var edge in current.Edges)
+                {
+                    if (visited.Contains(edge.To))
+                        continue;
+                    // we calculate the distance to neighbor-node <=> which is stored in edge.To property
+                    var newDistance = distances[current] + edge.Weight; // weight property store distance between current node and neighbor-node
+                    if (newDistance < distances[edge.To])
+                    {
+                        //if new distance to neighbor node less than data in "distances" dictionary then
+                        // 1) we update "distances" dictionary
+                        distances[edge.To] = newDistance;
+                        // 2) add this neighbor to priority queue
+                        queue.Enqueue(edge.To, newDistance);
+                        // update "previousNodes" collection
+                        if (!previousNodes.TryAdd(edge.To, current))
+                        {
+                            previousNodes[edge.To] = current;
+                        }
+                    }
+                }
+
+            }
+            // here we built distances table
+            // now we can get shortest distance to specific "to" node
+            return BuildPath(toNode, previousNodes);
+        }
+
+        private Path BuildPath(Node toNode, Dictionary<Node, Node> previousNodes)
+        {
+            //we will add "toNode" & nodes from "PreviousNodes" to stack
+            // and then pop Nodes from stack 
+            // so we can have the nodes & build the path from "fromNode" to "ToNode" in correct order.
+            var stack = new System.Collections.Generic.Stack<Node>();
+            stack.Push(toNode);
+
+            previousNodes.TryGetValue(toNode, out var previous);
+            while (previous != null)
+            {
+                stack.Push(previous);
+                previous = previousNodes.ContainsKey(previous) ? previousNodes[previous] : null;
+            }
+
+            var path = new Path();
+            while (stack.Count > 0)
+            {
+                path.AddNode(stack.Pop().Label);
+            }
+
+            return path;
         }
     }
 }

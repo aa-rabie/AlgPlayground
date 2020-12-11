@@ -2,6 +2,9 @@
 
 namespace AlgPlayGroundApp.DataStructures
 {
+
+    // check this link & answers for priority queue implementations by community
+    // https://stackoverflow.com/a/13776636
     /// <summary>
     /// assuming the higher value has higher priority
     /// </summary>
