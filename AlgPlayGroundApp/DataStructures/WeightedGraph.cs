@@ -141,6 +141,7 @@ namespace AlgPlayGroundApp.DataStructures
             }
         }
 
+        #region Get Shortest Path & Get Shortest Distance
         // for more info - for more info see video 86, 87, 88 in Mosh data-structure course part II
         public int GetShortedDistance(string from, string to)
         {
@@ -285,6 +286,41 @@ namespace AlgPlayGroundApp.DataStructures
             }
 
             return path;
+        }
+        #endregion
+
+        public bool HasCycle()
+        {
+            HashSet<Node> visited = new HashSet<Node>();
+
+            foreach (var node in _nodes.Values)
+            {
+                if (!visited.Contains(node) &&
+                    HasCycle(node, null, visited))
+                    return true;
+            }
+
+            return false;
+        }
+
+        private bool HasCycle(Node node, Node parent, HashSet<Node> visited)
+        {
+            visited.Add(node);
+            // we need to check if neighbor nodes has Cycle or not
+            // neighbor nodes are stored in Edge(s).To property
+            foreach (var edge in node.Edges)
+            {
+                // if this neighbor is the parent-node (the node we came from) then bypass parent-node because
+                // link with parent-node is not cycle
+                if(edge.To == parent)
+                    continue;
+
+                // if neighbor-node exist in "visited" hash-set or HasCycle then we return true
+                if (visited.Contains(edge.To) || HasCycle(edge.To, node, visited))
+                    return true;
+            }
+
+            return false;
         }
     }
 }
