@@ -22,11 +22,13 @@ namespace AlgPlayGroundApp
             h.AddNode("A");
             h.AddNode("B");
             h.AddNode("C");
+            h.AddNode("D");
             h.AddEdge("A", "B", 3);
-            h.AddEdge("A", "C", 2);
-            h.AddEdge("A", "C", 2);
+            h.AddEdge("B", "D", 4);
+            h.AddEdge("C", "D", 5);
+            h.AddEdge("A", "C", 1);
             h.AddEdge("B", "C", 1);
-            h.Print(Console.Out);
+            h.GetMinSpanningTree().Print(Console.Out);
         }
 
         private static void TestArray()

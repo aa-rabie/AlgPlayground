@@ -322,5 +322,73 @@ namespace AlgPlayGroundApp.DataStructures
 
             return false;
         }
+
+        public bool ContainsNode(string label)
+        {
+            if (string.IsNullOrEmpty(label))
+                return false;
+
+            return _nodes.ContainsKey(label);
+        }
+
+        public int Count => _nodes == null || !_nodes.Any() ? 0 : _nodes.Count;
+
+        #region Get Min Spanning Tree - Prim's Alogorithm
+        //for more info check video 92, 93, 94 in Mosh data-structure course part II
+        public WeightedGraph GetMinSpanningTree()
+        {
+            // tree basically is a graph but without cycle (cycle links)
+            var tree = new WeightedGraph();
+            SimplePriorityQueue<Edge> edges = new SimplePriorityQueue<Edge>();
+            if (Count == 0)
+                // if graph has zero nodes then return empty tree
+                return tree;
+
+            using (var nodesEnumerator = _nodes.Values.GetEnumerator())
+            {
+                if (!nodesEnumerator.MoveNext())
+                    return tree;
+
+                var startNode = nodesEnumerator.Current;
+                foreach (var edge in startNode.Edges)
+                {
+                    edges.Enqueue(edge, edge.Weight);
+                }
+                tree.AddNode(startNode.Label);
+
+                if (!edges.Any())
+                    // if graph has no edges then return empty tree
+                    return tree;
+
+                while (tree.Count < Count)
+                {
+                    // we will get edge with min-weight
+                    var minEdge = edges.Dequeue();
+                    var nextNode = minEdge.To;
+
+                    if (tree.ContainsNode(nextNode.Label))
+                    {
+                        // if the edge is connected to existing node in min-spanning-tree
+                        // then we skip it & pick the next minEdge
+                        continue;
+                    }
+
+                    //we will add nextNode to tree
+                    tree.AddNode(nextNode.Label);
+                    tree.AddEdge(minEdge.From.Label, nextNode.Label, minEdge.Weight);
+
+                    // add only connected Edges to "Edges" queue
+                    foreach (var edge in nextNode.Edges)
+                    {
+                        // we only add connected-node if it is not added to min-spanning-tree before
+                        if(!tree.ContainsNode(edge.To.Label))
+                            edges.Enqueue(edge, edge.Weight);
+                    }
+                }
+            }
+
+            return tree;
+        }
+        #endregion
     }
 }
