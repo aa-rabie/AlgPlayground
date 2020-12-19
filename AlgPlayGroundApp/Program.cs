@@ -1,6 +1,5 @@
 ﻿using AlgPlayGroundApp.DataStructures;
 using System;
-using AlgPlayGroundApp.Extensions;
 using AlgPlayGroundApp.Helpers;
 using AlgPlayGroundApp.Sorting;
 using System.Collections.Generic;
@@ -78,7 +77,7 @@ namespace AlgPlayGroundApp
 
         static void TestReveseString(string input)
         {
-            var reversed = input.ReverseUsingStack();
+            var reversed = StringReverse.ReverseUsingStack(input);
             Console.WriteLine($"input: {input}, reversed: {reversed}");
         }
 
