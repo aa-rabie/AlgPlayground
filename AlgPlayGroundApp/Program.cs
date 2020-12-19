@@ -8,6 +8,7 @@ using AlgPlayGroundApp.Amazon.Demo;
 using AlgPlayGroundApp.GenericQuestions;
 using AlgPlayGroundApp.LeetCode;
 using AlgPlayGroundApp.LeetCode.Arrays;
+using AlgPlayGroundApp.LeetCode.Easy;
 using AlgPlayGroundApp.Searching;
 
 namespace AlgPlayGroundApp
@@ -17,17 +18,12 @@ namespace AlgPlayGroundApp
         static void Main(string[] args)
         {
 
-            var h = new WeightedGraph();
-            h.AddNode("A");
-            h.AddNode("B");
-            h.AddNode("C");
-            h.AddNode("D");
-            h.AddEdge("A", "B", 3);
-            h.AddEdge("B", "D", 4);
-            h.AddEdge("C", "D", 5);
-            h.AddEdge("A", "C", 1);
-            h.AddEdge("B", "C", 1);
-            h.GetMinSpanningTree().Print(Console.Out);
+            MergeTwoSortedListsProblem.ListNode l1 = new MergeTwoSortedListsProblem.ListNode(1,
+                new MergeTwoSortedListsProblem.ListNode(2, new MergeTwoSortedListsProblem.ListNode(4)));
+            MergeTwoSortedListsProblem.ListNode l2 = new MergeTwoSortedListsProblem.ListNode(1,
+                new MergeTwoSortedListsProblem.ListNode(2, new MergeTwoSortedListsProblem.ListNode(3)));
+
+            var result = new MergeTwoSortedListsProblem.MySolution().MergeTwoLists(l1, l2);
         }
 
         private static void TestArray()
