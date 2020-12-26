@@ -10,6 +10,13 @@ namespace AlgPlayGroundApp.Sorting
     /// <typeparam name="T"></typeparam>
     public class SelectionSort<T>  where T : IComparable<T>
     {
+        /// <summary>
+        /// idea : iterate over array & try to find the min-element-Index and then put that min-value in correct location
+        /// after first iteration => min elm will be at index zero
+        /// then in second iteration we search for min value in "rest of array starting of index 1" because array[0] is already sorted in iteration #1
+        /// we repeat the process till we iterate over all elements in array  
+        /// </summary>
+        /// <param name="arr"></param>
         public void Sort(T[] arr)
         {
             if(arr == null || arr.Length == 0)
