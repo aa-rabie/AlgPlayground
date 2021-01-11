@@ -30,6 +30,22 @@ namespace AlgPlayground.Tests
             var actual = StringUtilities.CountVowels(string.Empty);
             Assert.That(0, Is.EqualTo(actual));
         }
+
+        [Test]
+        public void TestReverseWorksCorrectly()
+        {
+            var actual = StringUtilities.Reverse(string.Empty);
+            Assert.That(string.Empty, Is.EqualTo(actual));
+
+            actual = StringUtilities.Reverse(null);
+            Assert.That(string.Empty, Is.EqualTo(actual));
+
+            actual = StringUtilities.Reverse("ahmed");
+            Assert.That("demha", Is.EqualTo(actual));
+
+            actual = StringUtilities.Reverse("abcd");
+            Assert.That("dcba", Is.EqualTo(actual));
+        }
     }
 
 

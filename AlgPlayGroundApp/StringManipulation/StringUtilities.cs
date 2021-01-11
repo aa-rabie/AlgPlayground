@@ -1,4 +1,6 @@
-﻿namespace AlgPlayGroundApp.StringManipulation
+﻿using System.Text;
+
+namespace AlgPlayGroundApp.StringManipulation
 {
     public class StringUtilities
     {
@@ -17,6 +19,21 @@
                     count++;
             }
             return count;
+        }
+
+        public static string Reverse(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return string.Empty;
+
+            StringBuilder builder = new StringBuilder();
+
+            for (var i = str.Length -1; i >= 0 ; i--)
+            {
+                builder.Append(str[i]);
+            }
+
+            return builder.ToString();
         }
     }
 }
