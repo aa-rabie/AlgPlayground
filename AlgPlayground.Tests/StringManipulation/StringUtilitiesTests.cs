@@ -46,6 +46,44 @@ namespace AlgPlayground.Tests
             actual = StringUtilities.Reverse("abcd");
             Assert.That("dcba", Is.EqualTo(actual));
         }
+
+        [Test]
+        public void TestReverseWordsWorksCorrectly()
+        {
+            var actual = StringUtilities.ReverseWords(string.Empty);
+            Assert.That(string.Empty, Is.EqualTo(actual));
+
+            actual = StringUtilities.ReverseWords(null);
+            Assert.That(string.Empty, Is.EqualTo(actual));
+
+            actual = StringUtilities.ReverseWords("   ");
+            Assert.That(string.Empty, Is.EqualTo(actual));
+
+            actual = StringUtilities.ReverseWords("   ahmed  ");
+            Assert.That("ahmed", Is.EqualTo(actual));
+
+            actual = StringUtilities.ReverseWords("Trees are beautiful");
+            Assert.That("beautiful are Trees", Is.EqualTo(actual));
+        }
+
+        [Test]
+        public void TestAreRotationsWorksCorrectly()
+        {
+            var actual = StringUtilities.AreRotations(string.Empty, string.Empty);
+            Assert.That(false, Is.EqualTo(actual));
+
+            actual = StringUtilities.AreRotations(null, null);
+            Assert.That(false, Is.EqualTo(actual));
+
+            actual = StringUtilities.AreRotations("ABCD", "CDAB");
+            Assert.That(true, Is.EqualTo(actual));
+
+            actual = StringUtilities.AreRotations("ABCD", "CDABQ");
+            Assert.That(false, Is.EqualTo(actual));
+
+            actual = StringUtilities.AreRotations("ABCD", "BDCA");
+            Assert.That(false, Is.EqualTo(actual));
+        }
     }
 
 
