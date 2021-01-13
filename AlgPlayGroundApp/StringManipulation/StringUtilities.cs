@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Text;
 
 namespace AlgPlayGroundApp.StringManipulation
@@ -70,6 +71,55 @@ namespace AlgPlayGroundApp.StringManipulation
 
             return str1.Length == str2.Length
                    && (str1 + str1).Contains(str2);
+        }
+
+        public static string RemoveDuplicates(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return string.Empty;
+
+            StringBuilder builder = new StringBuilder();
+            HashSet<char> seenChars = new HashSet<char>();
+            foreach (var ch in str)
+            {
+                if (!seenChars.Contains(ch))
+                {
+                    seenChars.Add(ch);
+                    builder.Append(ch);
+                }
+            }
+
+            return builder.ToString();
+        }
+
+        /// <summary>
+        /// Gets the most occuring Char
+        /// Assuming the input string has only ASCII characters
+        /// </summary>
+        /// <param name="input">string that we will search within</param>
+        /// <returns>the most occuring character</returns>
+        public static char GetMaxOccuringChar(string input)
+        {
+            if(string.IsNullOrEmpty(input))
+                throw new ArgumentException("input string is null or empty", nameof(input));
+            const int asciiSize = 256;
+            var frequencies = new int[asciiSize];
+            //count the characters frequencies
+            foreach (var ch in input)
+                frequencies[ch]++;
+
+            var max = 0;
+            char result = default(char);
+            for (int i = 0; i < frequencies.Length; i++)
+            {
+                if (frequencies[i] > max)
+                {
+                    max = frequencies[i];
+                    result = (char) i;
+                }
+            }
+
+            return result;
         }
     }
 }

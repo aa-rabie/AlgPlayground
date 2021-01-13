@@ -84,6 +84,37 @@ namespace AlgPlayground.Tests
             actual = StringUtilities.AreRotations("ABCD", "BDCA");
             Assert.That(false, Is.EqualTo(actual));
         }
+
+        [Test]
+        public void TestRemoveDuplicatesWorksCorrectly()
+        {
+            var actual = StringUtilities.RemoveDuplicates(string.Empty);
+            Assert.That(string.Empty, Is.EqualTo(actual));
+
+            actual = StringUtilities.RemoveDuplicates(null);
+            Assert.That(string.Empty, Is.EqualTo(actual));
+
+            actual = StringUtilities.RemoveDuplicates("ABCD");
+            Assert.That("ABCD", Is.EqualTo(actual));
+
+            actual = StringUtilities.RemoveDuplicates("AAAAB");
+            Assert.That("AB", Is.EqualTo(actual));
+
+            actual = StringUtilities.RemoveDuplicates("     ");
+            Assert.That(" ", Is.EqualTo(actual));
+        }
+
+        [Test]
+        public void TestGetMostOccuringCharWorksCorrectly()
+        {
+            var actual = StringUtilities.GetMaxOccuringChar("AAAABC");
+            Assert.That('A', Is.EqualTo(actual));
+
+            actual = StringUtilities.GetMaxOccuringChar("Trees are beautiful");
+            Assert.That('e', Is.EqualTo(actual));
+
+            Assert.Throws(typeof(ArgumentException), () => { StringUtilities.GetMaxOccuringChar(null); });
+        }
     }
 
 
