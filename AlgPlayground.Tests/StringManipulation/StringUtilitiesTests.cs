@@ -166,6 +166,19 @@ namespace AlgPlayground.Tests
             actual = StringUtilities.AreAnagrams2("ABCD", "BDCA");
             Assert.That(true, Is.EqualTo(actual));
         }
+
+        [Test]
+        public void TestIsPalindromeWorksCorrectly()
+        {
+            var actual = StringUtilities.IsPalindrome(string.Empty);
+            Assert.That(true, Is.EqualTo(actual));
+
+            actual = StringUtilities.IsPalindrome("ABCDX");
+            Assert.That(false, Is.EqualTo(actual));
+
+            actual = StringUtilities.IsPalindrome("madam");
+            Assert.That(true, Is.EqualTo(actual));
+        }
     }
 
 

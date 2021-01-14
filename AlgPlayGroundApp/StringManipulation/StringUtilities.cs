@@ -214,5 +214,25 @@ namespace AlgPlayGroundApp.StringManipulation
             }
             return true;
         }
+
+        public static bool IsPalindrome(string word)
+        {
+            if(word == null)
+                throw new ArgumentNullException(nameof(word));
+
+            if (word.Length == 0)
+                return true;
+
+            var left = 0;
+            var right = word.Length - 1;
+            word = word.ToLowerInvariant();
+            while (left < right)
+            {
+                if (word[left++] != word[right--])
+                    return false;
+            }
+
+            return true;
+        }
     }
 }
