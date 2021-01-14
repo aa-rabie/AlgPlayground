@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace AlgPlayGroundApp.StringManipulation
@@ -44,6 +45,9 @@ namespace AlgPlayGroundApp.StringManipulation
                 return string.Empty;
 
             var words = str.Trim().Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            if (!words.Any())
+                return string.Empty;
+
             StringBuilder builder = new StringBuilder();
 
             for (var i = words.Length - 1; i >= 0; i--)
@@ -120,6 +124,29 @@ namespace AlgPlayGroundApp.StringManipulation
             }
 
             return result;
+        }
+
+        public static string Capitalize(string str)
+        {
+            if (string.IsNullOrEmpty(str))
+                return string.Empty;
+
+            str = str.Trim();
+
+            if (string.IsNullOrEmpty(str))
+                return string.Empty;
+
+            var words = str.Split(' ', StringSplitOptions.RemoveEmptyEntries);
+            if(!words.Any())
+                return string.Empty;
+
+            for (int i = 0; i < words.Length; i++)
+            {
+                words[i] = words[i].Substring(0,1).ToUpper() + 
+                           (words[i].Substring(1) ?? string.Empty).ToLower();
+            }
+
+            return string.Join(' ', words);
         }
     }
 }

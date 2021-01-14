@@ -115,6 +115,25 @@ namespace AlgPlayground.Tests
 
             Assert.Throws(typeof(ArgumentException), () => { StringUtilities.GetMaxOccuringChar(null); });
         }
+
+        [Test]
+        public void TestCapitalizeWorksCorrectly()
+        {
+            var actual = StringUtilities.Capitalize(null);
+            Assert.That(string.Empty, Is.EqualTo(actual));
+
+            actual = StringUtilities.Capitalize("");
+            Assert.That(string.Empty, Is.EqualTo(actual));
+
+            actual = StringUtilities.Capitalize("    ");
+            Assert.That(string.Empty, Is.EqualTo(actual));
+
+            actual = StringUtilities.Capitalize("  A   B   C  ");
+            Assert.That("A B C", Is.EqualTo(actual));
+
+            actual = StringUtilities.Capitalize("Today Is GOOD day");
+            Assert.That("Today Is Good Day", Is.EqualTo(actual));
+        }
     }
 
 
