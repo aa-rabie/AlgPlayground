@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.ExceptionServices;
 using System.Text;
 
 namespace AlgPlayGroundApp.StringManipulation
@@ -147,6 +148,71 @@ namespace AlgPlayGroundApp.StringManipulation
             }
 
             return string.Join(' ', words);
+        }
+
+        /// <summary>
+        /// Anagrams are strings with same sequence of characters but chars in each string has different order
+        /// </summary>
+        /// <param name="str1"></param>
+        /// <param name="str2"></param>
+        /// <returns></returns>
+        public static bool AreAnagrams(string str1, string str2)
+        {
+            if (str1 == null || str2 == null
+                || str1.Length != str2.Length)
+                return false;
+
+            var chArray1 = str1.ToCharArray();
+            Array.Sort(chArray1);
+
+            var chArray2 = str2.ToCharArray();
+            Array.Sort(chArray2);
+
+            return chArray1.SequenceEqual(chArray2);
+        }
+
+        /// <summary>
+        /// check if two strings are Anagrams using Histogramming
+        /// assuming that input string contains english chars only 
+        /// </summary>
+        /// <param name="str1"></param>
+        /// <param name="str2"></param>
+        /// <returns></returns>
+        public static bool AreAnagrams2(string first, string second)
+        {
+            if (first == null || second == null
+                             || first.Length != second.Length)
+                return false;
+
+            const int englishAlphabet = 26;
+            // we record/count the frequency of each character [in first string param] in frequencies array
+            var frequencies = new int[englishAlphabet];
+            first = first.ToLower();
+            for (int i = 0; i < first.Length; i++)
+            {
+                var ch = first[i];
+                var index = ch - 'a';
+                frequencies[index]++;
+            }
+
+            //we iterate over second string char
+            // for each char in second - we decrement its counter in frequencies array
+            // if count == zero within for loop then 
+            // these strings (first & second) does not have same characters and return false
+            // otherwise return true
+            second = second.ToLower();
+            for (int i = 0; i < second.Length; i++)
+            {
+                var ch = second[i];
+                var index = ch - 'a';
+                if (frequencies[index] == 0)
+                {
+                    // Both strings does not have same number of characters
+                    return false;
+                }
+                frequencies[index]--;
+            }
+            return true;
         }
     }
 }

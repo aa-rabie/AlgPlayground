@@ -134,6 +134,38 @@ namespace AlgPlayground.Tests
             actual = StringUtilities.Capitalize("Today Is GOOD day");
             Assert.That("Today Is Good Day", Is.EqualTo(actual));
         }
+
+        [Test]
+        public void TestAreAnagramsWorksCorrectly()
+        {
+            var actual = StringUtilities.AreAnagrams(string.Empty, string.Empty);
+            Assert.That(true, Is.EqualTo(actual));
+
+            actual = StringUtilities.AreAnagrams(null, null);
+            Assert.That(false, Is.EqualTo(actual));
+
+            actual = StringUtilities.AreAnagrams("ABCDX", "CDAB");
+            Assert.That(false, Is.EqualTo(actual));
+
+            actual = StringUtilities.AreAnagrams("ABCD", "BDCA");
+            Assert.That(true, Is.EqualTo(actual));
+        }
+
+        [Test]
+        public void TestAreAnagrams2WorksCorrectly()
+        {
+            var actual = StringUtilities.AreAnagrams2(string.Empty, string.Empty);
+            Assert.That(true, Is.EqualTo(actual));
+
+            actual = StringUtilities.AreAnagrams2(null, null);
+            Assert.That(false, Is.EqualTo(actual));
+
+            actual = StringUtilities.AreAnagrams2("ABCDX", "CDAB");
+            Assert.That(false, Is.EqualTo(actual));
+
+            actual = StringUtilities.AreAnagrams2("ABCD", "BDCA");
+            Assert.That(true, Is.EqualTo(actual));
+        }
     }
 
 
