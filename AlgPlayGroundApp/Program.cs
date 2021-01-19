@@ -18,12 +18,8 @@ namespace AlgPlayGroundApp
         static void Main(string[] args)
         {
 
-            MergeTwoSortedListsProblem.ListNode l1 = new MergeTwoSortedListsProblem.ListNode(1,
-                new MergeTwoSortedListsProblem.ListNode(2, new MergeTwoSortedListsProblem.ListNode(4)));
-            MergeTwoSortedListsProblem.ListNode l2 = new MergeTwoSortedListsProblem.ListNode(1,
-                new MergeTwoSortedListsProblem.ListNode(2, new MergeTwoSortedListsProblem.ListNode(3)));
-
-            var result = new MergeTwoSortedListsProblem.MySolution().MergeTwoLists(l1, l2);
+            var cls = new TwoSum.MyCustomSolution();
+            var result = cls.TwoSum(new Int32[] {3, 3}, 6);
         }
 
         private static void TestArray()
