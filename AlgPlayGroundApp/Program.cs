@@ -18,8 +18,8 @@ namespace AlgPlayGroundApp
         static void Main(string[] args)
         {
 
-            var cls = new TwoSum.MyCustomSolution();
-            var result = cls.TwoSum(new Int32[] {3, 3}, 6);
+            var cls = new GainBestProfitFromMarket();
+            var result = cls.MaxProfit(new Int32[] { 2, 1, 2, 0, 1 });
         }
 
         private static void TestArray()
