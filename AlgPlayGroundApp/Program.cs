@@ -18,8 +18,11 @@ namespace AlgPlayGroundApp
         static void Main(string[] args)
         {
 
-            var cls = new GainBestProfitFromMarket();
-            var result = cls.MaxProfit(new Int32[] { 2, 1, 2, 0, 1 });
+            //var cls = new AlgPlayGroundApp.LeetCode.Easy.MaxSubArrayProblem.MySolution();
+            //var result = cls.MaxSubArray(new Int32[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 });
+
+            var cls = new ValidParenthesesChecker.MySolution();
+            var result = cls.IsValid("{[]}");
         }
 
         private static void TestArray()
