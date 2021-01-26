@@ -47,5 +47,31 @@ namespace AlgPlayGroundApp.LeetCode.Easy
             head.Next = null;
             return p;
         }
+
+        //submitted at 26 Jan 2021
+        public class MySolution
+        {
+            public ListNode ReverseList(ListNode head)
+            {
+                if (head == null)
+                    return head;
+
+                var tail = head;
+                ListNode prev = null;
+                ListNode cur = head;
+                while (cur != null)
+                {
+                    var nextNode = cur.Next;
+                    cur.Next = prev;
+                    //update pointers
+                    prev = cur;
+                    cur = nextNode;
+                }
+                head = prev;
+                tail.Next = null;
+
+                return head;
+            }
+        }
     }
 }
