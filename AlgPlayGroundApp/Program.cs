@@ -21,8 +21,8 @@ namespace AlgPlayGroundApp
             //var cls = new AlgPlayGroundApp.LeetCode.Easy.MaxSubArrayProblem.MySolution();
             //var result = cls.MaxSubArray(new Int32[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 });
 
-            var cls = new ValidParenthesesChecker.MySolution();
-            var result = cls.IsValid("{[]}");
+            var cls = new AddStrings.MySolution();
+            var result = cls.AddStrings("650", "1650");
         }
 
         private static void TestArray()
