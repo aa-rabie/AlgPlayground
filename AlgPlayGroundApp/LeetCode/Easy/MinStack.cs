@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace AlgPlayGroundApp.LeetCode.Easy
@@ -76,6 +77,51 @@ namespace AlgPlayGroundApp.LeetCode.Easy
             public int GetMin()
             {
                 return _Min.GetValueOrDefault();
+            }
+        }
+    }
+
+    public class LeetCode
+    {
+        class MinStack
+        {
+
+            private Stack<int[]> _stack = new Stack<int[]>();
+
+            public MinStack() { }
+
+
+            public void Push(int x)
+            {
+
+                /* If the stack is empty, then the min value
+                 * must just be the first value we add. */
+                if (_stack.Count == 0)
+                {
+                    _stack.Push(new int[] { x, x });
+                    return;
+                }
+
+                int currentMin = _stack.Peek()[1];
+                _stack.Push(new int[] { x, Math.Min(x, currentMin) });
+            }
+
+
+            public void Pop()
+            {
+                _stack.Pop();
+            }
+
+
+            public int Top()
+            {
+                return _stack.Peek()[0];
+            }
+
+
+            public int GetMin()
+            {
+                return _stack.Peek()[1];
             }
         }
     }
