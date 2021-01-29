@@ -51,6 +51,11 @@ namespace AlgPlayGroundApp.LeetCode.Easy
                     }
                 }
 
+                if (w1.Length < w2.Length)
+                {
+                    // if same character but w1 is less in length then w1 should be ordered before w2 & we should return true
+                    return true;
+                }
                 //both words have same characters & length
                 return true;
             }
