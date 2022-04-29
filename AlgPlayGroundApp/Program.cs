@@ -4,6 +4,7 @@ using AlgPlayGroundApp.Helpers;
 using AlgPlayGroundApp.Sorting;
 using System.Collections.Generic;
 using System.Reflection.Metadata.Ecma335;
+using AlgPlayGroundApp.Algorithms;
 using AlgPlayGroundApp.Amazon.Demo;
 using AlgPlayGroundApp.GenericQuestions;
 using AlgPlayGroundApp.LeetCode;
@@ -21,9 +22,34 @@ namespace AlgPlayGroundApp
             //var cls = new AlgPlayGroundApp.LeetCode.Easy.MaxSubArrayProblem.MySolution();
             //var result = cls.MaxSubArray(new Int32[] { -2, 1, -3, 4, -1, 2, 1, -5, 4 });
 
-            var cls = new AddStrings.MySolution();
-            var result = cls.AddStrings("650", "1650");
+            //var cls = new AddStrings.MySolution();
+            //var result = cls.AddStrings("650", "1650");
+            // TestBinarySearch();
+            TestDijkstra();
         }
+
+        static void TestDijkstra()
+        {
+            var graph = new Dijkstra.Graph();
+            graph.Add(new Dijkstra.Node("start", 0), new List<Dijkstra.Node>()
+            {
+                new Dijkstra.Node("a", 6),
+                new Dijkstra.Node("b", 2),
+            });
+            graph.Add(new Dijkstra.Node("a", 0), new List<Dijkstra.Node>()
+            {
+                new Dijkstra.Node("fin", 1)
+            });
+            graph.Add(new Dijkstra.Node("b", 0), new List<Dijkstra.Node>()
+            {
+                new Dijkstra.Node("a", 3),
+                new Dijkstra.Node("fin", 5)
+            });
+            graph.Add(new Dijkstra.Node("fin", 0), new List<Dijkstra.Node>());
+
+            var cls = new Dijkstra();
+            cls.Run(graph, new Dijkstra.Node("start"));
+        } 
 
         private static void TestArray()
         {

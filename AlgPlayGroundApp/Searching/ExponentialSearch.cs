@@ -11,10 +11,10 @@ namespace AlgPlayGroundApp.Searching
     /// </summary>
     public class ExponentialSearch
     {
-        public int Search(IList<int> data, int target)
+        public int? Search(IList<int> data, int target)
         {
             if (data == null || !data.Any())
-                return -1;
+                return null;
 
             int bound = 1;
             while (bound < data.Count && data[bound] < target)

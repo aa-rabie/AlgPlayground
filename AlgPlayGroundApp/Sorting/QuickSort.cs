@@ -2,6 +2,15 @@
 
 namespace AlgPlayGroundApp.Sorting
 {
+    /// <summary>
+    /// Best-Case:  O(n log n)
+    /// Average-Case:  O(n log n)
+    /// Worst-Case:  O(n2)
+    /// Space Complexity: O(n)
+    /// clear explanation at https://www.geeksforgeeks.org/quick-sort/
+    /// and c# impl https://exceptionnotfound.net/quick-sort-csharp-the-sorting-algorithm-family-reunion/
+    /// </summary>
+    /// <typeparam name="T"></typeparam>
     public class QuickSort<T> where T : IComparable<T>
     {
         private void Swap(T[] array, int index1, int index2)
@@ -25,7 +34,7 @@ namespace AlgPlayGroundApp.Sorting
             //boundary is pointer refers to end of left partition
             // initially left partition is empty so if start = 0 then boundary = -1
             var boundary = start - 1;
-            for (int i = start; i < end + 1; i++)
+            for (int i = start; i < end ; i++)
             {
                 if (array[i].CompareTo(pivot) <= 0)
                 {
@@ -33,8 +42,11 @@ namespace AlgPlayGroundApp.Sorting
                     Swap(array,i,boundary);
                 }
             }
-            //here boundary will refer to pivot position & pivot will be in its correct location
-            return boundary;
+            //swap to put pivot in its correct place
+            Swap(array, boundary+1, end);
+
+            //here (boundary+1) will refer to pivot position & pivot will be in its correct location
+            return boundary +1;
         }
 
         private void Sort(T[] array, int start, int end)
