@@ -6,19 +6,23 @@ namespace AlgPlayGroundApp.DataStructures
     {
         public bool IsValidBinarySearchTree()
         {
-            return IsValidBinarySearchTree(Root, int.MinValue, int.MaxValue);
+            return CheckIfValidBST(Root, null, null);
         }
 
-        protected bool IsValidBinarySearchTree(Node root, int minValidValue, int maxValidValue)
+        protected bool CheckIfValidBST(Node root, int? low, int? high)
         {
             if (root == null)
+            {
                 return true;
-
-            if (root.Value < minValidValue || root.Value > maxValidValue)
+            }
+            // The current node's value must be between low and high.
+            if ((low != null && root.Value <= low) || (high != null && root.Value >= high))
+            {
                 return false;
-
-            return IsValidBinarySearchTree(root.LeftChild, minValidValue, root.Value - 1)
-                   && IsValidBinarySearchTree(root.RightChild, root.Value + 1, maxValidValue);
+            }
+            // The left and right subtree must also be valid.
+            return CheckIfValidBST(root.RightChild, root.Value, high) &&
+                   CheckIfValidBST(root.LeftChild, low, root.Value);
         }
     }
 }

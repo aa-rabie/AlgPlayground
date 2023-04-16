@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
@@ -130,6 +131,80 @@ namespace AlgPlayGroundApp.Helpers
                     }
                 }
                 return sb.ToString();
+            }
+
+            public string MyBetterSolution(int num)
+            {
+                var builder = new System.Text.StringBuilder();
+                while (num > 0)
+                {
+                    if (num >= 1000)
+                    {
+                        num -= 1000;
+                        builder.Append("M");
+                    }
+                    else if (num >= 900)
+                    {
+                        num -= 900;
+                        builder.Append("CM");
+                    }
+                    else if (num >= 500)
+                    {
+                        num -= 500;
+                        builder.Append("D");
+                    }
+                    else if (num >= 400)
+                    {
+                        num -= 400;
+                        builder.Append("CD");
+                    }
+                    else if (num >= 100)
+                    {
+                        num -= 100;
+                        builder.Append("C");
+                    }
+                    else if (num >= 90)
+                    {
+                        num -= 90;
+                        builder.Append("XC");
+                    }
+                    else if (num >= 50)
+                    {
+                        num -= 50;
+                        builder.Append("L");
+                    }
+                    else if (num >= 40)
+                    {
+                        num -= 40;
+                        builder.Append("XL");
+                    }
+                    else if (num >= 10)
+                    {
+                        num -= 10;
+                        builder.Append("X");
+                    }
+                    else if (num >= 9)
+                    {
+                        num -= 9;
+                        builder.Append("IX");
+                    }
+                    else if (num >= 5)
+                    {
+                        num -= 5;
+                        builder.Append("V");
+                    }
+                    else if (num >= 4)
+                    {
+                        num -= 4;
+                        builder.Append("IV");
+                    }
+                    else
+                    {
+                        builder.Append(new string('I', num));
+                        break;
+                    }
+                }
+                return builder.ToString();
             }
         }
     }

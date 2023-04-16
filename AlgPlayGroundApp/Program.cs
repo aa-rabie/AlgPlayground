@@ -11,6 +11,7 @@ using AlgPlayGroundApp.LeetCode;
 using AlgPlayGroundApp.LeetCode.Arrays;
 using AlgPlayGroundApp.LeetCode.Easy;
 using AlgPlayGroundApp.Searching;
+using AlgPlayGroundApp.Trella;
 
 namespace AlgPlayGroundApp
 {
@@ -25,7 +26,11 @@ namespace AlgPlayGroundApp
             //var cls = new AddStrings.MySolution();
             //var result = cls.AddStrings("650", "1650");
             // TestBinarySearch();
-            TestDijkstra();
+            // TestDijkstra();
+            //BinaryTreeHasUniversalSubTreeChecker.Test();
+            // BinarySearchTreeValidityChecker.Test();
+            //new SearchInRotatedSortedArrayProblem().Test();
+            FunWithAnagarams.Test();
         }
 
         static void TestDijkstra()
